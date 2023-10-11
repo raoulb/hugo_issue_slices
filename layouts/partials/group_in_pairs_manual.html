@@ -1,0 +1,11 @@
+{{ $pages := . }}
+
+{{ $pa := collections.Index $pages 0 }}
+{{ $pb := collections.Index $pages 1 }}
+{{ $pc := collections.Index $pages 2 }}
+{{ $pd := collections.Index $pages 3 }}
+{{ $pe := collections.Index $pages 4 }}
+
+{{ $groups := slice (slice $pa $pb) (slice $pc $pd) (slice $pe) }}
+
+{{ return $groups }}

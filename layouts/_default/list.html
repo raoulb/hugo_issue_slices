@@ -1,0 +1,21 @@
+{{ define "main" }}
+  <h2>{{ .Title }}</h2>
+
+  {{ $allPages := $.Site.RegularPages }}
+
+  {{/* Manual pairing: yields expected result */}}
+  {{/* $groups := partial "group_in_pairs_manual" $allPages */}}
+
+  {{/* Algorithmic pairing: fails */}}
+  {{ $groups := partial "group_in_pairs" $allPages }}
+
+  {{ range $index, $pair := $groups }}
+    <p>Pair # {{ $index }}</p>
+    <ul>
+      {{ range $pair }}
+        <li>{{ .Title }}</li>
+      {{ end }}
+    </ul>
+  {{ end }}
+
+{{ end }}

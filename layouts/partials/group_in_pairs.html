@@ -1,0 +1,18 @@
+{{ $pages := . }}
+{{ $size := 2 }}
+
+{{ $groups := slice }}
+{{ $currGroup := slice }}
+
+{{ range $index, $item := $pages }}
+  {{ $currPageIndex := add $index 1 }}
+
+  {{ $currGroup = $currGroup | append $item }}
+
+  {{ if (or (modBool $currPageIndex 2) (eq (len $pages) $currPageIndex)) }}
+    {{ $groups = $groups | append (slice $currGroup) }}
+    {{ $currGroup = slice }}
+  {{ end }}
+{{ end }}
+
+{{ return $groups }}
